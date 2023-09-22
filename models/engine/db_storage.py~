@@ -1,0 +1,8 @@
+#!/usr/bin/python3
+"""Module that represents database engine"""
+
+
+class DBStorage:
+    """Data Base engine"""
+    __engine = None
+    __session = None

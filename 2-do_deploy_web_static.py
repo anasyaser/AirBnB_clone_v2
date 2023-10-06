@@ -32,7 +32,7 @@ def do_deploy(archive_path):
     arch_name_no_exten = arch_name.split('.')[0]
     try:
         put(archive_path, '/tmp/{}'.format(arch_name))
-        run('mkdir -p /data/web_static/releases/{}'.format(arch_name_no_exten))
+        run('mkdir -p /data/web_static/releases/{}/'.format(arch_name_no_exten))
         run('tar -zxf /tmp/{} -C /data/web_static/releases/{}/'
             .format(arch_name, arch_name_no_exten))
         run('rm /tmp/{}'.format(arch_name))

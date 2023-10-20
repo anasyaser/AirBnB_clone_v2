@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Prepare current web static files, compress and deploy them them"""
+"""Prepare current web static files, compress and deploy them"""
 from datetime import datetime
 from fabric.operations import local, run, put
 from fabric.api import *
@@ -48,3 +48,11 @@ def do_deploy(archive_path):
         return False
     print("New version deployed!")
     return True
+
+
+def deploy():
+    """pack new version and deploy"""
+    file_path = do_pack()
+    if not file_path:
+        return False
+    return do_deploy(file_path)

@@ -8,7 +8,7 @@ def do_pack():
     """Compress files on local machine"""
     local("mkdir -p versions")
     archive_name = "web_static_{}.tgz"\
-    .format(datetime.strftime(datetime.now(), "%Y%m%d%H%M%S"))
+        .format(datetime.strftime(datetime.now(), "%Y%m%d%H%M%S"))
     result = local("tar -cvzf versions/{} web_static".format(archive_name),
                    capture=True)
     if result.failed:

@@ -40,4 +40,5 @@ def do_deploy(archive_path):
             .format(arch_name_no_exten))
     except Exception:
         return False
+    print("New version deployed!")
     return True

@@ -61,3 +61,7 @@ class FileStorage:
             if obj == v:
                 del FileStorage.__objects[k]
                 return
+
+    def close(self):
+        """Close and desserilization"""
+        self.reload()

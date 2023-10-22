@@ -67,3 +67,7 @@ class DBStorage:
     def reload(self):
         """Get all saved objects"""
         pass
+
+    def close(self):
+        """Close current session"""
+        self.__session.remove()

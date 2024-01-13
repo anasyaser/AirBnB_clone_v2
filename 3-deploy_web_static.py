@@ -10,7 +10,6 @@ env.hosts = ['54.197.110.58', '100.26.246.11']
 env.user = 'ubuntu'
 env.key_filename = '~/.ssh/school'
 
-
 def do_pack():
     """Compress files on local machine"""
     local("mkdir -p versions")
@@ -22,7 +21,7 @@ def do_pack():
         return
     return "versions/{}".format(archive_name)
 
-
+@hosts(env.hosts[0])
 def do_deploy(archive_path):
     """Deploy Current version to all my servers"""
     if not os.path.exists(archive_path):

@@ -6,9 +6,10 @@ from fabric.api import *
 import os
 
 
-env.hosts = ['54.197.110.58', '100.26.246.11']
+env.hosts = ['107.22.142.160', '100.25.22.111']
 env.user = 'ubuntu'
 env.key_filename = '~/.ssh/school'
+
 
 def do_pack():
     """Compress files on local machine"""
@@ -21,7 +22,7 @@ def do_pack():
         return
     return "versions/{}".format(archive_name)
 
-@hosts(env.hosts[0])
+
 def do_deploy(archive_path):
     """Deploy Current version to all my servers"""
     if not os.path.exists(archive_path):
@@ -30,7 +31,7 @@ def do_deploy(archive_path):
     arch_name = archive_path.split('/')[-1]
     arch_name_no_exten = arch_name.split('.')[0]
     try:
-        put(archive_path, '/tmp/{}'.format(arch_name))
+        put(archive_path, '/tmp/')
         run('mkdir -p /data/web_static/releases/{}'.format(arch_name_no_exten))
         run('tar -zxf /tmp/{} -C /data/web_static/releases/{}/'
             .format(arch_name, arch_name_no_exten))
@@ -43,7 +44,7 @@ def do_deploy(archive_path):
         run('rm -rf /data/web_static/current')
         run('ln -s /data/web_static/releases/{}/ /data/web_static/current'
             .format(arch_name_no_exten))
-    except Exception:
+    except Exception as e:
         return False
     print("New version deployed!")
     return True

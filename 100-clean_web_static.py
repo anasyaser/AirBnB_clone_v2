@@ -57,13 +57,11 @@ def deploy():
         return False
     return do_deploy(file_path)
 
-
 def do_clean(number=0):
     """Remove archive files and keep most recent"""
     arch_list = sorted(os.listdir('versions'))
     number = int(number)
-
-    if len(arch_list) <= number or len(arch_list) == 0:
+    if len(arch_list) == number:
         return
     if number == 0:
         arch_list.pop()
